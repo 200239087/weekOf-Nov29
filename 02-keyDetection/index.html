@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            background-color: rgb(3, 7, 12);
+            background-image: url(&quot;&quot;);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+        }
+
+        h1 {
+            position: absolute;
+            top: 33vh;
+            left: 40vw;
+            color: #fff;
+            border: 1px solid white;
+            padding: 20px;
+        }
+
+        p {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body id="particles-js">
+    <h1>&uarr; &uarr; &darr; &darr; &larr; &rarr; &larr; &rarr; b a</h1>
+    <p>Run local server</p>
+    < <canvas class="particles-js-canvas-el" width="1920" height="380" style="width: 100%; height: 100%;"></canvas>
+
+
+        <script>
+            let phrase = [];
+            const password = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
+
+            function showParticles() {
+                /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+                particlesJS.load('particles-js', 'particles.json', function () {
+                    console.log('callback - particles.js config loaded');
+                });
+            }
+
+            function checkAnswer(phrase, password) {
+                if (phrase.join('') === password) {
+                    showParticles();
+                }
+            }
+
+            window.addEventListener('keyup', function (e) {
+                phrase.push(e.key);
+                if (phrase.length > password.length) {
+                    phrase.shift();
+                }
+                console.log(phrase);
+                checkAnswer(phrase, password);
+            });
+        </script>
+</body>
+
+</html>

@@ -6,9 +6,10 @@
 
    `<audio src="sounds/new.ogg"></audio>`
 
-1. Optionally add some kind of id so you can hook into it later
+1. Optionally add some kind of id so you can hook into it later and/or add the
+   "controls" keyword to display player
 
-   `<audio src="sounds/new.ogg" data-play="addhero"></audio>`
+   `<audio src="sounds/new.ogg" data-play="addhero" controls></audio>`
 
 1. Get audio element via some kind of querySelector
 
