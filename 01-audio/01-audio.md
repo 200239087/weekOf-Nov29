@@ -61,3 +61,15 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats#Browse
 
 * Challenge: make a music player like: player.jpg that plays your existing mp3s
 * Challenge: make it connect to an API like soundcloud.com
+
+# Exercise using Video
+
+1. Add a `<video>` tag and include the attribute:
+   src="https://player.vimeo.com/external/194837908.sd.mp4?s=c350076905b78c67f74d7ee39fdb4fef01d12420&profile_id=164"
+
+1. Add the following code:
+
+   ```js
+   const vid = document.querySelector("video");
+   vid.play();
+   ```
