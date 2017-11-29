@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/picnic@6.4.0/picnic.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-size: 16px;
+        }
+
+        nav {
+            background-color: #41CBC7;
+            height: 7rem;
+        }
+
+        #brandtitle {
+            font-family: 'Gloria Hallelujah', cursive;
+            display: inline;
+            font-size: 1.5rem;
+        }
+
+        nav label {
+            font-size: 2rem;
+        }
+
+        .white {
+            color: #fff !important;
+        }
+
+        .stack {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section {
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Raleway', sans-serif;
+        }
+
+        section h1 {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        section p {
+            margin-top: 0;
+            padding-top: 0;
+            font-size: 1.3rem;
+            opacity: 1.0;
+        }
+
+
+        #soup {
+            background-color: #4C99CF;
+            padding-top: 7rem;
+        }
+
+        #salad {
+            background-color: #4873A6
+        }
+
+        #sandwich {
+            background-color: #595386;
+        }
+
+        #entree {
+            background-color: #524364;
+        }
+    </style>
+</head>
+
+<body class="flex">
+
+    <nav class="demo">
+        <a href="http://www.georgiancollege.ca/community-alumni/georgian-dining-room/tab/dining#bun-on-the-run" class="brand">
+            <svg width="60" height="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px"
+                y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve">
+                <path fill="#fff" d="M91.719,43.866L86.712,20.31H13.284L8.277,43.866H5v8.182h3.174l5.007,27.642h73.636l5.003-27.642H95v-8.182  H91.719z M19.911,28.492h60.177l3.265,15.373H57.388l-1.035,2.561c-0.503,1.252-1.379,2.332-2.483,3.093  c-1.109,0.757-2.422,1.195-3.87,1.199c-1.452-0.004-2.765-0.442-3.874-1.199c-1.105-0.761-1.98-1.841-2.483-3.093l-1.031-2.561  H16.643L19.911,28.492z M79.982,71.508H20.014l-3.522-19.461H37.4c1.076,1.657,2.463,3.093,4.091,4.21  C43.904,57.922,46.854,58.9,50,58.9c3.142,0,6.095-0.978,8.509-2.643c1.624-1.117,3.011-2.553,4.091-4.21h20.909L79.982,71.508z"
+                />
+            </svg>
+            <h1 id="brandtitle" class="white">Bun on the Run</h1>
+        </a>
+
+        <!-- responsive-->
+        <input id="bmenub" type="checkbox" class="show">
+        <label for="bmenub" class="burger pseudo button white">&equiv;</label>
+
+        <div class="menu">
+            <a href="http://my.georgiancollege.ca/News/Documents/BOR%20Summer%202017.pdf" class="pseudo button icon-picture">Download PDF menu</a>
+            <a href="#" class="pseudo button icon-puzzle">Find Us</a>
+        </div>
+    </nav>
+
+
+
+    <!-- content goes here -->
+    <div id="app" class="flex"></div>
+
+
+
+
+    <script>
+        const menuApi = 'https://gist.githubusercontent.com/avcoder/cefb6e041486541080d682aa00d9cb9c/raw/27773a5f33f27fa5b09a18d08d1bb8c2a1fa1ade/menu.json';
+        let menus = [];
+        let menu;
+
+
+        function getTodaysMenu(menus) {
+            // figure out today's menu.
+            // For now just return 1st menu
+            return menus[0];
+        }
+
+        // fetch(menuApi)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         menus = [...data];
+        //         menu = getTodaysMenu(menus);
+        //         displayMenu(menu);
+        //     });
+        async function receiveMenus() {
+            const response = await fetch(menuApi);
+            const data = await response.json();
+            menus = [...data]
+            menu = getTodaysMenu(menus);
+            displayMenu(menu);
+        }
+        receiveMenus();
+
+        function displayMenu(menu) {
+            let app = document.getElementById('app');
+            app.innerHTML = `
+            <section id="soup" class="stack icon-picture">
+            <div class="flex four demo">
+
+                <div class="one-fourth">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2"
+                        baseProfile="tiny" x="0px" y="0px" viewBox="0 0 100 125" xml:space="preserve">
+                        <g>
+                            <path opacity="0.8" fill="#fff" d="M5,42.5c0,17.667,10.186,32.947,25,40.311V95h40V82.811C84.814,75.447,95,60.167,95,42.5V40H5V42.5z M62.5,82.811V87.5h-25   v-4.689V82.5h25V82.811z M87.172,47.5c-1.623,12.277-9.173,22.959-20.511,28.595L63.836,77.5H36.164l-2.826-1.405   C22.001,70.459,14.451,59.777,12.828,47.5H87.172z"
+                            />
+                            <path fill="#fff" d="M47.5,27.5c0-4.136,3.364-7.5,7.5-7.5s7.5-3.364,7.5-7.5V10h-5v2.5c0,1.379-1.122,2.5-2.5,2.5   c-6.893,0-12.5,5.607-12.5,12.5V35h5V27.5z"
+                            />
+                            <path fill="#fff" d="M52.5,32.5V35h5v-2.5c0-1.379,1.122-2.5,2.5-2.5c6.893,0,12.5-5.607,12.5-12.5V10h-5v7.5c0,4.136-3.364,7.5-7.5,7.5   S52.5,28.364,52.5,32.5z"
+                            />
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="three-fourth">
+                    <h1>Soup
+                        <span>${menu.soup.price}</span>
+                    </h1>
+                    <p>${menu.soup.flav}</p>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="salad" class="stack icon-puzzle">
+            <div class="flex four demo">
+
+                <div class="one-fourth">
+                    <svg width="100" height="100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-10 -30 120 90"
+                        enable-background="new 0 0 100 58" xml:space="preserve">
+                        <path opacity="0.8" fill="#fff" d="M85.223,20c3.537-8.282,3.324-16.613,3.308-17.094L88.43,0.107l-2.798-0.101c0,0-0.185-0.006-0.528-0.006
+          c-2.732,0-16.817,0.452-25.734,9.369C56.214,12.523,54.122,16.303,52.73,20H0v3C0,23,0,23,0,23c0,13.607,18.71,23.851,25,26.91V58
+          h50v-8.09c6.29-3.059,25-13.303,25-26.91c0,0,0,0,0-0.001v-3H85.223z M63.611,13.611C69.3,7.923,77.876,6.475,82.42,6.115
+          C82.152,9.455,81.287,15.024,78.562,20c-0.962,1.757-2.151,3.442-3.636,4.926c-0.379,0.378-0.771,0.735-1.173,1.077
+          c-3.846,3.271-8.674,4.908-12.702,5.727l13.874-13.874l-4.242-4.243L56.84,27.455c0.097-0.477,0.197-0.957,0.318-1.452
+          c0.475-1.936,1.148-3.995,2.088-6.003C60.314,17.715,61.725,15.497,63.611,13.611z M70.787,45.257l-1.784,0.791L69,52H31
+          l-0.003-5.952l-1.784-0.791C23.417,42.688,9.322,34.707,6.498,26c5.461,0.001,25.101,0.002,44.494,0.002
+          c-1.102,5.218-0.996,9.296-0.985,9.628l0.1,2.8l2.8,0.1c0,0,0.184,0.007,0.525,0.007c2.732,0,16.819-0.452,25.736-9.37
+          c1-1,1.888-2.063,2.686-3.166c5.41,0,9.564,0,11.648-0.001C90.678,34.707,76.583,42.688,70.787,45.257z" />
+                    </svg>
+                    </svg>
+                </div>
+
+                <div class="three-fourth">
+                    <h1>Salad
+                        <span>${menu.salad.price}</span>
+                    </h1>
+                    <p>${menu.salad.flav}</p>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="sandwich" class="stack icon-file-code">
+            <div class="flex four demo">
+
+                <div class="one-fourth">
+                    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" x="0px" y="0px" viewBox="-7 -10 60 60"
+                        enable-background="new 0 0 50 50" xml:space="preserve">
+                        <g>
+                            <path opacity="0.8" fill="#fff" d="M7,27.9H43c0.7,0,1.2-0.6,1.2-1.2v-5c0-0.7-0.6-1.2-1.2-1.2H26.9l2-4.7c0.1,0,0.2,0,0.4,0c2.2,0,4-1.8,4-4   c0-1.2-0.5-2.2-1.3-3L34,4.1c0.3-0.6,0-1.4-0.6-1.6c-0.6-0.3-1.4,0-1.6,0.6l-2.1,4.8c-0.1,0-0.2,0-0.4,0c-2.2,0-4,1.8-4,4   c0,1.2,0.5,2.2,1.3,2.9l-2.5,5.7H7c-0.7,0-1.2,0.6-1.2,1.2v5C5.8,27.3,6.4,27.9,7,27.9z M29.2,10.3c0.8,0,1.5,0.7,1.5,1.5   c0,0.8-0.7,1.5-1.5,1.5c-0.2,0-0.4,0-0.6-0.1c0,0,0,0,0,0c0,0,0,0,0,0c-0.5-0.2-0.9-0.7-0.9-1.4C27.8,11,28.4,10.3,29.2,10.3z    M8.3,22.9h16.7c0,0,0,0,0,0c0,0,0,0,0,0h16.8v2.5H8.3V22.9z"
+                            />
+                            <path opacity="0.8" fill="#fff" d="M7,47.7H43c0.7,0,1.2-0.6,1.2-1.2v-5c0-0.7-0.6-1.2-1.2-1.2H7c-0.7,0-1.2,0.6-1.2,1.2v5C5.8,47.1,6.4,47.7,7,47.7z    M8.3,42.7h33.4v2.5H8.3V42.7z"
+                            />
+                            <path opacity="0.8" fill="#fff" d="M41.6,31.3c-1.8,0-2.6-0.4-3.6-0.9c-1.1-0.5-2.3-1.2-4.7-1.2c-2.4,0-3.6,0.6-4.7,1.2c-1,0.5-1.8,0.9-3.6,0.9   c-1.8,0-2.6-0.4-3.6-0.9c-1.1-0.5-2.3-1.2-4.7-1.2c-2.4,0-3.6,0.6-4.7,1.2c-1,0.5-1.8,0.9-3.6,0.9c-0.7,0-1.2,0.6-1.2,1.2   s0.6,1.2,1.2,1.2c2.4,0,3.6-0.6,4.7-1.2c1-0.5,1.8-0.9,3.6-0.9s2.6,0.4,3.6,0.9c1.1,0.5,2.3,1.2,4.7,1.2c2.4,0,3.6-0.6,4.7-1.2   c1-0.5,1.8-0.9,3.6-0.9c1.8,0,2.6,0.4,3.6,0.9c1.1,0.5,2.3,1.2,4.7,1.2c0.7,0,1.2-0.6,1.2-1.2S42.3,31.3,41.6,31.3z"
+                            />
+                            <path opacity="0.8" fill="#fff" d="M41.6,35.7H8.4c-0.7,0-1.2,0.6-1.2,1.2s0.6,1.2,1.2,1.2h33.3c0.7,0,1.2-0.6,1.2-1.2S42.3,35.7,41.6,35.7z"
+                            />
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="three-fourth">
+                    <h1>Sandwich
+                        <span>${menu.sandwich.price}</span>
+                    </h1>
+                    <p>${menu.sandwich.flav}</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="entree" class="stack icon-help-circled">
+            <div class="flex four demo">
+
+                <div class="one-fourth">
+                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 -20 100 125" x="0px" y="0px">
+                        <title>Artboard 25</title>
+                        <path opacity="0.8" fill="#fff" d="M46.92,76.9,36.27,93.09a8.57,8.57,0,0,1-5.45,3.67,8.28,8.28,0,0,1-1.61.16,7.85,7.85,0,0,1-4.42-1.35,8,8,0,0,1-3.46-5.43,8.16,8.16,0,0,1,1.57-6.24l14.65-19a2,2,0,1,1,3.17,2.45l-14.65,19a4.12,4.12,0,0,0,1,5.92,3.94,3.94,0,0,0,3,.58,4.54,4.54,0,0,0,2.89-1.94L43.57,74.7a2,2,0,0,1,3.34,2.2ZM89,5.22c-3.73-2.66-8.8-2.86-14.26-.55A34.06,34.06,0,0,0,60.79,16.41c-5.06,7.1-7.43,15.23-6.33,21.75a9.26,9.26,0,0,1-.39,4.5,2,2,0,1,0,3.79,1.29,13.28,13.28,0,0,0,.55-6.45c-.91-5.42,1.25-12.61,5.64-18.77A30,30,0,0,1,76.27,8.36c4.14-1.74,7.82-1.7,10.38.13s3.81,5.29,3.51,9.77A30,30,0,0,1,84.35,33.2C80,39.37,73.86,43.76,68.44,44.66a13.3,13.3,0,0,0-5.82,2.54,14.51,14.51,0,0,0-1.33,1.15,2,2,0,0,0,2.79,2.86,10.36,10.36,0,0,1,1-.83,9.28,9.28,0,0,1,4.05-1.78c6.53-1.09,13.44-6,18.51-13.08a34.07,34.07,0,0,0,6.55-17C94.55,12.61,92.71,7.88,89,5.22ZM45.35,41.59a.54.54,0,0,1,0-.53,12.41,12.41,0,0,0-1.24-12.22L26.25,3.92A2,2,0,1,0,23,6.25L40.84,31.17a8.39,8.39,0,0,1,.84,8.27,4.52,4.52,0,0,0,.51,4.6l33,42.68a3.85,3.85,0,1,1-6.25,4.48L39,46.3a4.54,4.54,0,0,0-4.2-2,8.39,8.39,0,0,1-7.57-3.44L9.42,16a2,2,0,1,0-3.25,2.33L24,43.24a12.39,12.39,0,0,0,11.2,5.09.54.54,0,0,1,.5.19L65.6,93.41a7.79,7.79,0,0,0,5.12,3.38,7.94,7.94,0,0,0,1.43.13,7.85,7.85,0,0,0,6.19-12.65ZM32.57,36.21a2,2,0,0,0,1.64-3.15L17.91,9.78a2,2,0,1,0-3.28,2.29l16.3,23.28A2,2,0,0,0,32.57,36.21Z"
+                        />
+                    </svg>
+                </div>
+
+                <div class="three-fourth">
+                    <h1>Entree
+                        <span>${menu.entree.price}</span>
+                    </h1>
+                    <p>${menu.entree.flav}</p>
+                </div>
+            </div>
+        </section>
+`;
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
