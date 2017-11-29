@@ -8,6 +8,8 @@
 1. Try typing and observe what outputs in the console
    * Which event properties tell you what key was pressed?
 
+( See marvel/indexvuetype.html )
+
 ## Challenges
 
 1. Make a web page where if 'a' is pressed, then console.log('You found the
@@ -17,3 +19,5 @@
 1. Modify the code so that instead of 'a', it detects the word 'open'
 1. Modify the password so that instead of 'open' it's up, up, down, down, left,
    right, left, right, b, a (see buzzfeed.com)
+1. Combined with the audio element you did before, create a drum pad. Google
+   free downloadable drum sounds.
