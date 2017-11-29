@@ -24,11 +24,27 @@
 1. Add audio in javascript by using new Audio() whose parameter is the path to
    the sound file.
 
-   `const soundAddHero = new Audio('sounds/new.ogg');`
+   `const music = new Audio('music.mp3');`
 
 1. Play sound
 
-   `soundAddHero.play();`
+   `music.play();`
+
+1. Pause sound
+
+   `music.pause();`
+
+1. View the duration of the music in seconds. See
+   https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration
+
+   `music.duration`
+
+1. Forward the music by 60 seconds, then play the music
+
+   ```js
+   music.currentTime = 60;
+   music.play();
+   ```
 
 **See browser compatibility**
 https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats#Browser_compatibility
